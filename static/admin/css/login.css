@@ -1,0 +1,66 @@
+/* LOGIN FORM */
+
+.login {
+    background: #f8f9fa;  /* Light gray background color */
+    height: auto;
+}
+
+.login #header {
+    height: auto;
+    padding: 15px 16px;
+    justify-content: center;
+}
+
+.login #header h1 {
+    font-size: 1.5rem;  /* Larger font size for the heading */
+    margin: 0;
+}
+
+.login #header h1 a {
+    color: #007bff;  /* Blue color for the header link */
+}
+
+.login #content {
+    padding: 20px 20px 0;
+}
+
+.login #container {
+    background: #ffffff;  /* White background color for the form container */
+    border: 1px solid #dee2e6;  /* Light gray border color */
+    border-radius: 8px;  /* Slightly rounded corners */
+    overflow: hidden;
+    width: 28em;
+    min-width: 300px;
+    margin: 100px auto;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle box shadow for elevation */
+}
+
+.login .form-row {
+    padding: 10px 0;  /* Increased padding for form rows */
+}
+
+.login .form-row label {
+    display: block;
+    line-height: 2em;
+    color: #495057;  /* Dark gray color for labels */
+}
+
+.login .form-row #id_username, .login .form-row #id_password {
+    padding: 12px;  /* Increased padding for input fields */
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;  /* Light gray border color for input fields */
+    border-radius: 4px;  /* Slightly rounded corners for input fields */
+}
+
+.login .submit-row {
+    padding: 1em 0 0 0;
+    margin: 0;
+    text-align: center;
+}
+
+.login .password-reset-link {
+    text-align: center;
+    color: #007bff;  /* Blue color for the password reset link */
+}

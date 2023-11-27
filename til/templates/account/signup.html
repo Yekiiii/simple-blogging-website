@@ -1,0 +1,117 @@
+{% extends "account/base_entrance.html" %}
+{% load allauth i18n socialaccount %}
+{% block head_title %}
+    {% trans "Signup" %}
+{% endblock head_title %}
+
+{% block style%}
+
+    .sign-in-header {
+      text-align: center;
+      font-size:unset;
+      font-size: 48px; /* Adjust the font size as needed */
+      
+      color: blue;
+    }
+    .center{
+        text-align:center;
+        justify-content:center;
+        align-items:center;
+ 
+    }
+    .contrast{
+        color:black
+        background-color:red
+    }
+    
+    p{
+        padding-top:10px;
+    }
+
+    label {
+        display: block;        
+        font-size:18px;
+    }
+
+    #id_login{
+        width: 40%;
+        height:30px;
+        border-radius:5px;
+        
+
+    }
+    #id_password{
+        width: 40%;
+        height:30px;
+        border-radius:5px;
+    }
+    .helptext{
+        display:block;
+    }
+
+    button{
+        background-color:blue;
+        color:white;
+        transition: 0.3s all;
+        height:60px;
+        width:200px;
+        margin-top:20px;
+    }
+
+    button:hover{
+        color:white;
+        background-color:blue;
+        border-radius:5px;
+    }
+
+
+    ul li{
+        font-size:10px;
+    }
+
+    .log-pad{
+        text-align:center;
+        justify-content:center;
+        align-items:center;
+        background-color:white;
+        border-radius:20px;
+        width:40%;
+    }
+
+    input{
+        width: 40%;
+        height:30px;
+        border: 5px solid #ccc;
+        transition:0.3s;
+    }
+{% endblock %}
+
+{% block content %}
+<div class="log-pad">
+<p class="sign-in-header">Sign Up</p>
+
+
+    <p>
+        {% blocktrans %}Already have an account? Then please <a style="color:blue" href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    </p>
+    {% url 'account_signup' as action_url %}
+    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+        {% slot body %}
+            {% csrf_token %}
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+            {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+            {% endif %}
+        {% endslot %}
+        {% slot actions %}
+            {% element button tags="prominent,signup" type="submit" %}
+                {% trans "Sign Up" %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+</div>
+    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+{% endblock content %}

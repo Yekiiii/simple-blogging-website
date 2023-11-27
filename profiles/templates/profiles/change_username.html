@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock title %}
+
+{% block style %}
+.sign-in-header {
+    text-align: center;
+    font-size:unset;
+    font-size: 48px; /* Adjust the font size as needed */
+    
+    color: blue;
+  }
+
+.log-pad{
+    text-align:center;
+    justify-content:center;
+    align-items:center;
+    background-color:white;
+    border-radius:20px;
+    width:40%;
+}
+
+p{
+    padding-top:10px;
+}
+
+label {
+    display: block;        
+    font-size:18px;
+}
+
+
+#id_first_name, #id_last_name{
+    width: 40%;
+    height:30px;
+    border: 5px solid #ccc;
+    transition:0.3s;
+}
+#id_first_name:focus, #id_last_name:focus {
+    border: 3px solid #0000ff;
+    outline: none;
+
+  }
+  button{
+    background-color:blue;
+    color:white;
+    transition: 0.3s all;
+    height:60px;
+    width:200px;
+}
+
+button:hover{
+    color:white;
+    background-color:blue;
+    border-radius:5px;
+}
+
+
+{% endblock style %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+<div class="log-pad">
+    <p class="sign-in-header">Edit Profile</p>
+    <div class="form-group">
+    <form method ="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>Update</button>
+</div>
+</div>
+{% else %}
+<p class="warning">Wrong Url</p>
+{% endif %}
+
+{% endblock content %}

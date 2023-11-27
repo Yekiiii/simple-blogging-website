@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{%block title%}
+HomePageTitle
+{% endblock %}
+
+{% block body %}
+
+    <div id="posts-container" style="width:100%">
+
+    {% for post in posts %}
+    {% include "includes/post.html" with post=post show_detail_link=True %}
+    {% endfor %}
+</div>
+{% endblock %}

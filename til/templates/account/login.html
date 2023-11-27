@@ -1,0 +1,113 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+{% block head %}   
+<script src="https://cdn.tailwindcss.com"></script>
+{% endblock head %}
+{% block style%}
+
+    .sign-in-header {
+      text-align: center;
+      font-size:unset;
+      font-size: 48px; /* Adjust the font size as needed */
+      
+      color: blue;
+    }
+    .center{
+        text-align:center;
+        justify-content:center;
+        align-items:center;
+ 
+    }
+    .contrast{
+        color:black
+        background-color:red
+    }
+    
+    p{
+        padding-top:10px;
+    }
+
+    label {
+        display: block;        
+        font-size:18px;
+    }
+
+    #id_login{
+        width: 40%;
+        height:30px;
+        border: 5px solid #ccc;
+        transition:0.3s;
+
+    }
+    #id_password{
+        width: 40%;
+        height:30px;
+        border: 5px solid #ccc;
+        transition:0.3s;
+    }
+    #id_password:focus, #id_login:focus {
+        border: 3px solid #0000ff;
+        outline: none;
+
+      }
+
+
+    .helptext{
+        display:block;
+    }
+
+    button{
+        background-color:blue;
+        color:white;
+        transition: 0.3s all;
+        height:60px;
+        width:200px;
+    }
+
+    button:hover{
+        color:white;
+        background-color:blue;
+        border-radius:5px;
+    }
+    .log-pad{
+        text-align:center;
+        justify-content:center;
+        align-items:center;
+        background-color:white;
+        border-radius:20px;
+        width:40%;
+    }
+{% endblock %}
+
+{% block content %}
+<div class="log-pad">
+<p class="sign-in-header">Sign In</p>
+    <p class="center">
+        {% blocktrans %}If you have not created an account yet, then please
+    <a style="color:blue;" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+    </p>
+    {% url 'account_login' as login_url %}
+    {% element form form=form id="form-id" class="center" method="post" action=login_url tags="entrance,login" %}
+        {% slot body %}
+            {% csrf_token %}
+            {% element fields form=form class="center" unlabeled=True %}
+            {% endelement %}
+            {% if redirect_field_value %}
+                <input class="black"type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+            {% endif %}
+        {% endslot %}
+        {% slot actions %}
+            {% element button type="submit" class="contrast" tags="prominent,login"  %}
+                {% trans  "Sign In" %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+</div>
+    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+{% endblock content %}
